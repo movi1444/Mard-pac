@@ -64,8 +64,8 @@ void InitializeMavajid(void) {
     switch(sath){
         case (1):
             bazikoon.joon = maxjoon = 3;            
-            NUM_ARVAHSASAN = 2;
-            roohsorat = 1;
+            NUM_ARVAHSASAN = 5;
+            roohsorat = 2.5;
             cooldown = 3;
             zarib = 1;
             break;
