@@ -11,6 +11,7 @@ Texture pacbaste,pacbaz1,pacbaz2,pacbaz3,pacbaz4;
 Texture gilas,felfel,sib,gharch,ghost,galb;
 Sound dard,sekeg,mive,bakht,rooh;
 Sound backgroundMusic;
+Sound Dariush;
 Sound menu1,menu2;
 
 int animcounter = 0;
@@ -205,7 +206,7 @@ void UpdateMavajid(Vector2 posbazikoon,GameState *currentstate) {
             PlaySound(dard);
             cooldowntimer = cooldown;
             if(bazikoon.joon == 0){
-                    StopSound(backgroundMusic);
+                    StopSound(SelectedSound);
                     PlaySound(bakht);
                     cooldowntimer = 0;
                     falafeltimer = 0;
@@ -262,7 +263,7 @@ void UpdateMavajid(Vector2 posbazikoon,GameState *currentstate) {
                     PlaySound(dard);
                 } 
                 if(bazikoon.joon == 0){
-                    StopSound(backgroundMusic);
+                    StopSound(SelectedSound);
                     PlaySound(bakht);
                     cooldowntimer = 0;
                     falafeltimer = 0;
@@ -406,7 +407,11 @@ void loadTextureandAudio(){
     InitAudioDevice();
     backgroundMusic = LoadSound("assets/Audio/music.mp3");
     SetSoundVolume(backgroundMusic,0.3);
-    PlaySound(backgroundMusic);
+
+    Dariush = LoadSound("assets/Audio/Dariush - Shekanjegar.mp3");
+    SetSoundVolume(Dariush,1);
+
+    SelectedSound = backgroundMusic;
     
     dard = LoadSound("assets/Audio/oof.mp3");
     SetSoundVolume(dard,0.5);
@@ -423,16 +428,20 @@ void loadTextureandAudio(){
     rooh = LoadSound("assets/Audio/ghost.wav");
     SetSoundVolume(rooh,0.5);
 
-
     menu1 = LoadSound("assets/Audio/menu1.mp3");
+    SetSoundVolume(menu1,1);
 
     menu2 = LoadSound("assets/Audio/menu2.mp3");
-
+    SetSoundVolume(menu2,1);
 }
 
 void UpdateSoundLoop(void) {
-    if (!IsSoundPlaying(backgroundMusic))
-        PlaySound(backgroundMusic); 
+    if (!IsSoundPlaying(SelectedSound)){
+        if(SelectedSound.stream.buffer == backgroundMusic.stream.buffer)
+            SetSoundVolume(SelectedSound,0.2);
+
+        PlaySound(SelectedSound);
+    }        
 }
 
 void SelectedTexture(int n){

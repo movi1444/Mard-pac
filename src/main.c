@@ -18,10 +18,11 @@ int main(void) {
 
     while (currentState != EXIT && !WindowShouldClose()) {
         
-        SetSoundVolume(backgroundMusic,0.3);
-        
         if (currentState == MENU) 
             RunMenu(&currentState);
+
+        else if (currentState == MUSIC_MENU)
+            RunMusicMenu(&currentState);
 
         else if (currentState == DIFFICULTY)
             RunDifficultyMenu(&currentState);

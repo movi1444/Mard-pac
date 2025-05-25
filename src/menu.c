@@ -6,8 +6,10 @@
 #include <raylib.h>
 #include <time.h>
 
+Sound SelectedSound;
+
 void DrawMenu(GameState *currentState, int selectedOption) {
-    char *options[] = {"Play", "Records", "Exit"};
+    char *options[] = {"Play", "Records", "Music", "Exit"};  
     int numOptions = sizeof(options) / sizeof(options[0]);
 
     DrawText("MardPac", GetScreenWidth() / 2 - MeasureText("MardPac", 50) / 2, GetScreenHeight() / 2 - 150 , 50, YELLOW);
@@ -28,7 +30,10 @@ void DrawMenu(GameState *currentState, int selectedOption) {
             case 1:
                 *currentState = RECORDS;
                 break;
-            case 2:
+            case 2:  
+                *currentState = MUSIC_MENU;
+                break;
+            case 3:
                 *currentState = EXIT;
                 break;
         }
@@ -37,7 +42,7 @@ void DrawMenu(GameState *currentState, int selectedOption) {
 
 void RunMenu(GameState *currentState) {
     int selectedOption = 0;
-    const int numOptions = 3;
+    const int numOptions = 4;  
 
     while (!WindowShouldClose() && *currentState == MENU) {
         if (IsKeyPressed(KEY_UP)) {
@@ -55,6 +60,62 @@ void RunMenu(GameState *currentState) {
         ClearBackground(BLACK);
 
         DrawMenu(currentState, selectedOption);
+
+        EndDrawing();
+    }
+}
+
+void RunMusicMenu(GameState *currentState) {
+    int selectedOption = 0;
+    char *musicOptions[] = {"Background Music", "Dariush", "Back"};
+    int numOptions = sizeof(musicOptions) / sizeof(musicOptions[0]);
+
+    while (!WindowShouldClose() && *currentState == MUSIC_MENU) {
+        if (IsKeyPressed(KEY_UP)) {
+            PlaySound(menu1);
+            selectedOption--;
+            if (selectedOption < 0) selectedOption = numOptions - 1;
+        }
+        if (IsKeyPressed(KEY_DOWN)) {
+            PlaySound(menu1);
+            selectedOption++;
+            if (selectedOption >= numOptions) selectedOption = 0;
+        }
+
+        if (IsKeyPressed(KEY_ENTER)) {
+            PlaySound(menu2);
+            switch (selectedOption) {
+                case 0:  
+                    StopSound(Dariush);
+                    StopSound(backgroundMusic);
+                    SelectedSound = backgroundMusic;
+                    PlaySound(backgroundMusic);
+                    SetSoundVolume(SelectedSound,0.3);
+                    break;
+                case 1: 
+                    StopSound(backgroundMusic);
+                    StopSound(Dariush);
+                    SelectedSound = Dariush;
+                    PlaySound(Dariush);
+                    SetSoundVolume(SelectedSound,1);
+                    break;
+                case 2: 
+                    *currentState = MENU;
+                    break;
+            }
+        }
+
+        BeginDrawing();
+        ClearBackground(BLACK);
+
+        DrawText("Select Music", GetScreenWidth() / 2 - MeasureText("Select Music", 40) / 2, 
+                 GetScreenHeight() / 2 - 150, 40, SKYBLUE);
+
+        for (int i = 0; i < numOptions; i++) {
+            Color color = (i == selectedOption) ? SKYBLUE : WHITE;
+            DrawText(musicOptions[i], GetScreenWidth() / 2 - MeasureText(musicOptions[i], 30) / 2, 
+                     GetScreenHeight() / 2 - 30 + i * 30, 30, color);
+        }
 
         EndDrawing();
     }

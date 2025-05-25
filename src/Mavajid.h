@@ -54,6 +54,7 @@ extern double falafeltimer;
 extern double zarib;
 
 extern Sound backgroundMusic;
+extern Sound Dariush;
 extern Sound menu1;
 extern Sound menu2;
 
