@@ -3,11 +3,15 @@
 #include "raylib.h"
 #include "Mavajid.h"
 #include "menu.h"
+#include <stdlib.h>
+#include <time.h>
+#include <stdio.h>
 
 char playername[25] = "";
 
 int main(void) {
 
+    srand(time(NULL));
     InitWindow(SAFHE_TOOL, SAFHE_ERTEFA, "MardPac");
     SetTargetFPS(fps);
     

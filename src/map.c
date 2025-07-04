@@ -122,7 +122,6 @@ bool Is_Node(Vector2 pos){
 }
 
 Vector2 Jahatbad(Vector2 pos){
-    srand(time(NULL));
     int x = pos.x / GRID_ANDAZE;
     int y = pos.y / GRID_ANDAZE;
 
