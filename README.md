@@ -27,7 +27,7 @@ Mard-pac/
 ├── Record/                     
 │   └── RECORDS.txt              # High scores and game records
 ├── Mardpac.exe                  # Compiled Windows executable
-└── README.txt                   # Legacy readme
+└── README.md                  # Legacy readme
 ```
 ## ⚙️ Compile project with:
 gcc src/main.c src/map.c src/Mavajid.c src/game.c src/menu.c -Iraylib -Lraylib -lraylib -lwinmm -lgdi32 -luser32 -lkernel32 -lm -o Mardpac -mwindows
