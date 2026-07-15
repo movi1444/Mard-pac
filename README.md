@@ -29,10 +29,10 @@ Mard-pac/
 ├── Mardpac.exe                  # Compiled Windows executable
 └── README.txt                   # Legacy readme
 ```
-##Compile project with:
+## ⚙️ Compile project with:
 gcc src/main.c src/map.c src/Mavajid.c src/game.c src/menu.c -Iraylib -Lraylib -lraylib -lwinmm -lgdi32 -luser32 -lkernel32 -lm -o Mardpac -mwindows
 
-##How to Play
+## 🚀 How to Play
 Compile the game using the command above, or just use the pre-built Mardpac.exe.
 
 Turn your volume all the way up for the full experience.
