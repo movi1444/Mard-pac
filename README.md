@@ -8,7 +8,7 @@ A custom Pac-Man clone built from the ground up. Navigate the maze, eat the dots
 *   **Graphics & Audio Framework:** `raylib`
 
 ## 🎵 The Vibe
-This isn't your standard arcade game. The background music features a completely unexpected, emotionally devastating soundtrack, ensuring maximum tension while you secure that high score. Turn your volume up and let the aesthetic take over.
+This isn't your standard arcade game. The background music features a completely unexpected, emotionally devastating soundtrack, ensuring maximum tension while you secure that high score.
 
 ## 📂 Project Structure
 
@@ -39,4 +39,3 @@ Turn your volume all the way up for the full experience.
 
 Run the executable to start the game.
 
-Try not to cry while setting a new high score.
